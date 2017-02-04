@@ -1,0 +1,18 @@
+{
+  "scripts": {
+    "start": "node server.js"
+  },
+  "name": "pingpong",
+  "version": "1.0.0",
+  "description": "Koa server that replies \"pong\" when pinged on /ping",
+  "main": "server.js",
+  "keywords": [
+    "docker",
+    "ping",
+    "pong",
+    "healthcheck",
+    "koa"
+  ],
+  "author": "Eldar Shamukhamedov",
+  "license": "MIT"
+}
