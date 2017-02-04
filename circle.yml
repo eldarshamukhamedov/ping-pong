@@ -1,0 +1,24 @@
+machine:
+  services:
+    - docker
+  node:
+    version: 7.5.0
+  environment:
+    DEV_KEY: dev-${CIRCLE_BRANCH}
+
+dependencies:
+  override:
+    - npm run image:build
+
+test:
+  override:
+    - npm run image:run
+    - sleep 10
+    - npm run testcontainer
+
+deployment:
+  master:
+    branch: master
+    commands:
+      - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+      - docker push eldarshamukhamedov/pingpong

@@ -1,11 +1,28 @@
 {
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "test": "npm run lint && npm run testonly",
+    "testonly": "NODE_ENV=testing node_modules/mocha/bin/_mocha test.js",
+    "testcontainer": "node_modules/mocha/bin/_mocha test.js",
+    "image:build": "docker build -t eldarshamukhamedov/pingpong .",
+    "image:run": "docker run --name pingpong -p 0.0.0.0:12345:12345 -d eldarshamukhamedov/pingpong:latest",
+    "image:publish": "docker login && docker push eldarshamukhamedov/pingpong",
+    "lint": "node_modules/.bin/eslint . --ext .js"
   },
   "name": "pingpong",
   "version": "1.0.0",
   "description": "Koa server that replies \"pong\" when pinged on /ping",
   "main": "server.js",
+  "dependencies": {
+    "koa": "^2.0.0",
+    "koa-logger": "next",
+    "node-fetch": "^1.6.3"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "eslint": "^3.15.0",
+    "mocha": "^3.2.0"
+  },
   "keywords": [
     "docker",
     "ping",
