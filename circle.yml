@@ -1,24 +1,28 @@
 machine:
-  services:
-    - docker
   node:
     version: 7.5.0
-  environment:
-    DEV_KEY: dev-${CIRCLE_BRANCH}
+  services:
+    - docker
 
 dependencies:
+  cache_directories:
+    - "~/docker"
+    - "~/node_modules"
   override:
-    - npm run image:build
+    - docker info
+    - if [[ -e ~/docker/image.tar ]]; then docker load --input ~/docker/image.tar; fi
+    - docker build --rm=false -t eldarshamukhamedov/pingpong .
+    - mkdir -p ~/docker; docker save eldarshamukhamedov/pingpong > ~/docker/image.tar
+    - npm install
 
 test:
   override:
-    - npm run image:run
-    - sleep 10
+    - docker run -d -p 12345:12345 eldarshamukhamedov/pingpong; sleep 10
     - npm run testcontainer
 
 deployment:
-  master:
+  hub: 
     branch: master
     commands:
-      - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+      - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
       - docker push eldarshamukhamedov/pingpong
