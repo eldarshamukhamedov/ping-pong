@@ -7,7 +7,7 @@ if (process.env.NODE_ENV === 'testing') require('./server');
 
 describe('Ping-pong server', () => {
   it('should return pong on /ping route', () => {
-    return fetch('http://localhost:12345/ping')
+    return fetch('http://localhost:8080/ping')
       .then(response => Promise.all([ response.text(), response.status ]))
       .then(([ response, status ]) => {
         expect(response).to.equal('Pong');
@@ -15,7 +15,7 @@ describe('Ping-pong server', () => {
       });
   });
   it('should 404 everything else', () => {
-    return fetch('http://localhost:12345/')
+    return fetch('http://localhost:8080/')
       .then(response => Promise.all([ response.text(), response.status ]))
       .then(([ response, status ]) => {
         expect(response).to.equal('Not Found');

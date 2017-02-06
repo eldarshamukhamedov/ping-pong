@@ -5,7 +5,7 @@
     "testonly": "NODE_ENV=testing node_modules/mocha/bin/_mocha test.js",
     "testcontainer": "node_modules/mocha/bin/_mocha test.js",
     "image:build": "docker build -t --rm=false eldarshamukhamedov/pingpong .",
-    "image:run": "docker run --name pingpong -p 0.0.0.0:12345:12345 -d eldarshamukhamedov/pingpong:latest",
+    "image:run": "docker run --name pingpong -p 0.0.0.0:8080:8080 -d eldarshamukhamedov/pingpong:latest",
     "image:publish": "docker login && docker push eldarshamukhamedov/pingpong",
     "lint": "node_modules/.bin/eslint . --ext .js"
   },

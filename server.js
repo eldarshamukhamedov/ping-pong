@@ -11,5 +11,5 @@ server.use(ctx => {
     ctx.body = 'Pong';
   }
 });
-server.listen(12345);
-console.log('Koa server listening on localhost:12345'); // eslint-disable-line
+server.listen(8080);
+console.log('Koa server listening on localhost:8080'); // eslint-disable-line

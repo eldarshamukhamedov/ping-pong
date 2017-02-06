@@ -17,7 +17,7 @@ dependencies:
 
 test:
   override:
-    - docker run -d -p 12345:12345 eldarshamukhamedov/pingpong; sleep 10
+    - docker run -d -p 8080:8080 eldarshamukhamedov/pingpong; sleep 10
     - npm run testcontainer
 
 deployment:
