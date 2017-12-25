@@ -14,9 +14,12 @@
   "description": "Koa server that replies \"pong\" when pinged on /ping",
   "main": "server.js",
   "dependencies": {
+    "dockerode": "^2.4.3",
     "koa": "^2.0.0",
     "koa-logger": "next",
-    "node-fetch": "^1.6.3"
+    "node-fetch": "^1.6.3",
+    "nodemon": "^1.11.0",
+    "rxjs": "^5.4.0"
   },
   "devDependencies": {
     "chai": "^3.5.0",
